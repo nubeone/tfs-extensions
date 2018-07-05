@@ -3,7 +3,7 @@
     "id": "TFS-Xml-Merge",
     "name": "Remote XML Merge",
     "version": "1.0.0",
-    "public": false,
+    "public": true,
     "publisher": "NubeOne",
     "targets": [
         {
