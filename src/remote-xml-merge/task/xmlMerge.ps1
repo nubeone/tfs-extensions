@@ -81,7 +81,7 @@ try {
     # import dominant rootnode and all its children into submissive xml (else said children cannot be added there)
     $xmlRootDom = $submissiveFile.ImportNode($xmlRootDom, $true)
     # merge roots
-    $newRoot = mergeNodes $xmlRoot1 $xmlRootDom
+    $newRoot = mergeNodes $xmlRootSub $xmlRootDom
     $submissiveFile.ReplaceChild($newRoot, $xmlRootSub)
 
     # scriptblock to save merged XML

@@ -13,7 +13,7 @@
     "version": {
         "Major": 1,
         "Minor": 1,
-        "Patch": 0
+        "Patch": 1
     },
     "instanceNameFormat": "Remote Xml Merge",
     "groups": [
@@ -170,9 +170,10 @@
             "type": "filePath",
             "label": "File Path",
             "defaultValue": "",
-            "required": true,
+            "required": false,
             "helpMarkDown": "",
-            "groupName": "target"
+            "groupName": "target",
+            "visibleRule": "remoteTarget == true || remoteTarget == false"
         },
         {
             "name": "serverTarget",

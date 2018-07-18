@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "TFS-Xml-Merge",
     "name": "Remote XML Merge",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "public": true,
     "publisher": "NubeOne",
     "targets": [
