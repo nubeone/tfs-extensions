@@ -1,7 +1,7 @@
 {
   "name": "remote-xml-merge",
-  "version": "1.0.0",
-  "description": "Task to Merge a new XML File into a remote one, overwriting conflicting values with those from the new file.",
+  "version": "1.1.0",
+  "description": "Task to merge two XML files (local or remote) and write the result in a third file (local or remote).",
   "main": "index.js",
   "scripts": {
     "build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build.ps1",

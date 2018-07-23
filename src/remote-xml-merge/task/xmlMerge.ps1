@@ -108,9 +108,15 @@ try {
             [string]$path
         )
         $utf8Bom = New-Object System.Text.UTF8Encoding($true)
-        $sw = New-Object System.IO.StreamWriter($path, $false, $utf8Bom)
-        $file.Save($sw)
-        $sw.Close()
+        $xmlsettings = New-Object System.Xml.XmlWriterSettings
+        $xmlsettings.Encoding = $utf8Bom
+        $xmlsettings.OmitXmlDeclaration = $true
+        $xmlsettings.Indent = $true
+        $xmlsettings.IndentChars = "    "
+        $writer = [System.Xml.XmlWriter]::Create($path, $xmlsettings)
+        $file.Save($writer)
+        $writer.Flush()
+        $writer.Close()
     }
     # save local, or remote? if remote, which session should be used?
     $saveRemote = $true
