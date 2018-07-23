@@ -37,7 +37,7 @@
         {
             "name": "remote1",
             "type": "pickList",
-            "label": "File is on remote server",
+            "label": "File location",
             "defaultValue": "Local",
             "required": true,
             "helpMarkDown": "Select 'local' if the file is located on the TFS Server or in a build artifact, remote otherwise",
@@ -89,7 +89,7 @@
         {
             "name": "remote2",
             "type": "pickList",
-            "label": "File is on remote server",
+            "label": "File location",
             "defaultValue": "Local",
             "required": true,
             "helpMarkDown": "Select 'local' if the file is located on the TFS Server or in a build artifact, remote otherwise",
