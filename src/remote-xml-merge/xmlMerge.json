@@ -1,0 +1,70 @@
+{
+    "manifestVersion": 1,
+    "id": "TFS-Xml-Merge",
+    "name": "Remote XML Merge",
+    "version": "1.1.5",
+    "public": true,
+    "publisher": "NubeOne",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Task to Merge a new XML File into a remote one, overwriting conflicting values with those from the new file.",
+    "categories": [
+        "Build and release"
+    ],
+    "links": {
+        "learn": {
+            "uri": "https://github.com/nubeone/tfs-extensions#readme"
+        },
+        "support": {
+            "uri": "https://github.com/nubeone/tfs-extensions/issues"  
+        }
+    },
+    "icons": {
+        "default": "images/extension-icon.png"        
+    },
+    "branding": {
+        "color": "#1C3272",
+        "theme": "dark"
+    },
+    "screenshots": [
+        {
+            "path": "images/screenshot-01.png"
+        }
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "LICENSE.txt"
+        }
+    },
+    "tags": [
+        "release",
+        "build",
+        "xml",
+        "replace",
+        "merge",
+        "remote"
+    ],
+    "files": [
+        {
+            "path": "task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "TFS-Xml-merge-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "task"
+            }
+        }
+    ]
+}
