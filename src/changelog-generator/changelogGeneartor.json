@@ -1,0 +1,69 @@
+{
+    "manifestVersion": 1,
+    "id": "TFS-Changelog-Generator",
+    "name": "Changelog Generator",
+    "version": "1.0.0",
+    "public": true,
+    "publisher": "NubeOne",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Generates a changelog file from commits.",
+    "categories": [
+        "Build and release"
+    ],
+    "links": {
+        "learn": {
+            "uri": "https://github.com/nubeone/tfs-extensions#readme"
+        },
+        "support": {
+            "uri": "https://github.com/nubeone/tfs-extensions/issues"  
+        }
+    },
+    "icons": {
+        "default": "images/extension-icon.png"        
+    },
+    "branding": {
+        "color": "#1C3272",
+        "theme": "dark"
+    },
+    "screenshots": [
+        {
+            "path": "images/screenshot-02.png"
+        }
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "LICENSE.txt"
+        }
+    },
+    "tags": [
+        "release",
+        "build",
+        "changelog",
+        "generate",
+        "commit"
+    ],
+    "files": [
+        {
+            "path": "task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "TFS-Changelog-Generator-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "task"
+            }
+        }
+    ]
+}

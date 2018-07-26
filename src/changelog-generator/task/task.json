@@ -1,0 +1,47 @@
+{
+    "id": "29242a04-0b5d-4f5c-9a2a-abbaaba4c690",
+    "name": "ChangelogGenerator",
+    "friendlyName": "Changelog Generator",
+    "description": "Creates a Changelog from commits to file",
+    "helpMarkDown": "[More Information](https://github.com/nubeone/tfs-extensions#readme)",
+    "category": "Utility",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "NubeOne",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Changelog Generator",
+    "groups": [
+        {
+            "name": "file",
+            "displayName": "File",
+            "isExpanded": true
+        }
+    ],
+    "inputs": [
+        {
+            "name": "filename",
+            "type": "string",
+            "label": "Filename",
+            "defaultValue": "Changelog.md",
+            "required": true,
+            "helpMarkDown": "Name of the changelog file",
+            "groupName": "file",
+            "visibleRule": ""
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "changelogGenerator.ps1",
+            "platforms": [
+                "windows"
+            ],
+            "workingDirectory": "$(currentDirectory)"
+        }
+    }
+}
