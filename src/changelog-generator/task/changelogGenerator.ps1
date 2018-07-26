@@ -2,7 +2,6 @@ Trace-VstsEnteringInvocation $MyInvocation
 try {
     $global:ErrorActionPreference = 'Stop'
     #$global: __vstsNoOverrideVerbose = $true
-    Import-Module "$PSScriptRoot\utility.ps1"
 
     # Get inputs from TFS/VSTS
     $filename = Get-VstsInput -Name "filename" -Require -ErrorAction "Stop"
