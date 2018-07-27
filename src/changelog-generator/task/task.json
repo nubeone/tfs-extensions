@@ -25,9 +25,9 @@
     ],
     "inputs": [
         {
-            "name": "sourcePath",
+            "name": "workingDir",
             "type": "filePath",
-            "label": "Source Path",
+            "label": "Working Directory",
             "defaultValue": "",
             "required": true,
             "helpMarkDown": "Git Repository to create Changelog",
