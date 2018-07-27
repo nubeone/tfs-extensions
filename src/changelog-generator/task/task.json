@@ -13,7 +13,7 @@
     "version": {
         "Major": 1,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 2
     },
     "instanceNameFormat": "Changelog Generator",
     "groups": [
@@ -42,6 +42,19 @@
             "helpMarkDown": "Name of the changelog file",
             "groupName": "file",
             "visibleRule": ""
+        },
+        {
+            "name": "commits",
+            "type": "pickList",
+            "label": "Commits",
+            "defaultValue": "Untill last tag",
+            "required": true,
+            "helpMarkDown": "",
+            "groupName": "file",
+            "options": {
+                "true": "All Changes",
+                "false": "Untill last tag"
+            }
         }
     ],
     "execution": {

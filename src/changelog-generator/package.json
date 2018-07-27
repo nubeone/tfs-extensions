@@ -1,6 +1,6 @@
 {
   "name": "changelog-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates a changelog file from commits.",
   "main": "index.js",
   "scripts": {

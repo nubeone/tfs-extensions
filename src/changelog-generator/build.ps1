@@ -6,4 +6,4 @@ if (!(Test-Path "$PSScriptRoot\task\ps_modules")) {
     New-Item -ItemType directory -Path "$PSScriptRoot\dist" # create dist folder
 }
 # package the extension
-tfx extension create --manifest-globs "changelogGeneartor.json" --output-path "$PSScriptRoot\dist"
+tfx extension create --manifest-globs "changelogGenerator.json" --output-path "$PSScriptRoot\dist"
