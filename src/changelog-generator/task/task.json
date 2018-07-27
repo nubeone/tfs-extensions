@@ -25,6 +25,15 @@
     ],
     "inputs": [
         {
+            "name": "sourcePath",
+            "type": "filePath",
+            "label": "Source Path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Git Repository to create Changelog",
+            "groupName": "file"
+        },
+        {
             "name": "filename",
             "type": "string",
             "label": "Filename",
