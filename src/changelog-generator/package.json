@@ -1,0 +1,30 @@
+{
+  "name": "changelog-generator",
+  "version": "1.0.0",
+  "description": "Generates a changelog from git commits and wirtes it to a file.",
+  "main": "index.js",
+  "scripts": {
+    "build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build.ps1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nubeone/tfs-extensions.git"
+  },
+  "keywords": [
+    "changelog",
+    "generator",
+    "vsts",
+    "tfs",
+    "config"
+  ],
+  "author": "NubeOne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nubeone/tfs-extensions/issues"
+  },
+  "homepage": "https://github.com/nubeone/tfs-extensions#readme",
+  "dependencies": {
+    "tfx-cli": "^0.5.12"
+  }
+}

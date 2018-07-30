@@ -33,4 +33,3 @@ https://github.com/nubeone/tfs-extensions
 
 # Release notes
 **Release 1.1.0**
-**Release 1.0.0**
