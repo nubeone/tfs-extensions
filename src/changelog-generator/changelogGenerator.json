@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "TFS-Changelog-Generator",
     "name": "Changelog Generator",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "public": true,
     "publisher": "NubeOne",
     "targets": [
