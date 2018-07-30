@@ -8,7 +8,7 @@ try {
     $filename = Get-VstsInput -Name "filename" -Require -ErrorAction "Stop"
     $commits = Get-VstsInput -Name "commits" -Require -ErrorAction "Stop"
     Set-Location $workingDir
-    "#v #{Build.BuildNumber}#" > $filename
+    "# v#{Build.BuildNumber}#" > $filename
     "" >> $filename
     if($commits -eq "true") {
         git log --oneline --date=format:"%Y-%m-%d %H:%M" --pretty=format:"- %cd %h %s %d <%ce>" --no-merges >> $filename
