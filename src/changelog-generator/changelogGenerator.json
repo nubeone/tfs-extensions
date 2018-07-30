@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "TFS-Changelog-Generator",
     "name": "Changelog Generator",
-    "version": "1.0.6",
+    "version": "1.0.0",
     "public": true,
     "publisher": "NubeOne",
     "targets": [
@@ -10,7 +10,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Generates a changelog file from commits.",
+    "description": "Generates a changelog from git commits and wirtes it to a file.",
     "categories": [
         "Build and release"
     ],
@@ -29,6 +29,11 @@
         "color": "#1C3272",
         "theme": "dark"
     },
+    "screenshots": [
+        {
+            "path": "images/screenshot-01.png"
+        }
+    ],
     "content": {
         "details": {
             "path": "README.md"

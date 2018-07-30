@@ -2,7 +2,7 @@
     "id": "29242a04-0b5d-4f5c-9a2a-abbaaba4c690",
     "name": "ChangelogGenerator",
     "friendlyName": "Changelog Generator",
-    "description": "Creates a Changelog from commits to file",
+    "description": "Creates a Changelog from commits and writes it to a file.",
     "helpMarkDown": "[More Information](https://github.com/nubeone/tfs-extensions#readme)",
     "category": "Utility",
     "visibility": [
@@ -13,7 +13,7 @@
     "version": {
         "Major": 1,
         "Minor": 0,
-        "Patch": 6
+        "Patch": 0
     },
     "instanceNameFormat": "Changelog Generator",
     "groups": [

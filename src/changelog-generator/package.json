@@ -1,7 +1,7 @@
 {
   "name": "changelog-generator",
-  "version": "1.0.6",
-  "description": "Generates a changelog file from commits.",
+  "version": "1.0.0",
+  "description": "Generates a changelog from git commits and wirtes it to a file.",
   "main": "index.js",
   "scripts": {
     "build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build.ps1",
