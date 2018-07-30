@@ -13,7 +13,7 @@ try {
     } else {
         $tag = git describe --tags --abbrev=0
         $tag = $tag + "..@"
-        git log --oneline $tag --date=format:\"%Y-%m-%d %H:%M\" --pretty=format:\""+prettyFormat+"\" --no-merges
+        git log --oneline $tag --date=format:\"%Y-%m-%d %H:%M\" --pretty=format:\""+prettyFormat+"\" --no-merges > $filename
     }
 } catch {
     Write-Verbose "Exception caught from task: $($_.Exception.ToString())"

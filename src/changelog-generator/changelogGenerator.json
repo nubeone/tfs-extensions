@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "TFS-Changelog-Generator",
     "name": "Changelog Generator",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "public": true,
     "publisher": "NubeOne",
     "targets": [
@@ -29,11 +29,6 @@
         "color": "#1C3272",
         "theme": "dark"
     },
-    "screenshots": [
-        {
-            "path": "images/screenshot-02.png"
-        }
-    ],
     "content": {
         "details": {
             "path": "README.md"
