@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
-    "id": "TFS-Xml-Merge",
-    "name": "Remote XML Merge",
+    "id": "TFS-Remote-Copy",
+    "name": "Remote Copy",
     "version": "1.0.0",
     "public": true,
     "publisher": "NubeOne",
