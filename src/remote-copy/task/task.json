@@ -1,0 +1,146 @@
+{
+    "id": "6a479afa-e814-4c80-85d7-c7e94ca0863c",
+    "name": "RemotCopy",
+    "friendlyName": "Remote Copy",
+    "description": "Copies a folder from local/remote to local/remote",
+    "helpMarkDown": "[More Information](https://github.com/nubeone/tfs-extensions#readme)",
+    "category": "Utility",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "NubeOne",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Remote Copy",
+    "groups": [
+        {
+            "name": "source",
+            "displayName": "Source Folder",
+            "isExpanded": true
+        },
+        {
+            "name": "destination",
+            "displayName": "Destination Folder",
+            "isExpanded": true
+        }
+    ],
+    "inputs": [
+        {
+            "name": "remote1",
+            "type": "pickList",
+            "label": "Folder location",
+            "defaultValue": "Local",
+            "required": true,
+            "helpMarkDown": "Select 'local' if the folder is located on the TFS Server or in a build artifact, remote otherwise",
+            "groupName": "source",
+            "options": {
+                "true": "Remote",
+                "false": "Local"
+            }
+        },
+        {
+            "name": "sourcePath",
+            "type": "filePath",
+            "label": "Folder Path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "",
+            "groupName": "source"
+        },
+        {
+            "name": "server1",
+            "type": "string",
+            "label": "Server Name",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Name of the server where the folder is located",
+            "groupName": "source",
+            "visibleRule": "remote1 = true"
+        },
+        {
+            "name": "userName1",
+            "type": "string",
+            "label": "Username",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Username to be used to connect to the server",
+            "groupName": "source",
+            "visibleRule": "remote1 = true"
+        },
+        {
+            "name": "password1",
+            "type": "string",
+            "label": "Password",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Password to be used to connect to the server",
+            "groupName": "source",
+            "visibleRule": "remote1 = true"
+        },
+        {
+            "name": "remote2",
+            "type": "pickList",
+            "label": "Folder location",
+            "defaultValue": "Local",
+            "required": true,
+            "helpMarkDown": "Select 'local' if the folder is located on the TFS Server or in a build artifact, remote otherwise",
+            "groupName": "destination",
+            "options": {
+                "true": "Remote",
+                "false": "Local"
+            }
+        },
+        {
+            "name": "destinationPath",
+            "type": "filePath",
+            "label": "Folder Path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "",
+            "groupName": "destination"
+        },
+        {
+            "name": "server2",
+            "type": "string",
+            "label": "Server Name",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Name of the server where the folder should be copied",
+            "groupName": "destination",
+            "visibleRule": "remote2 = true"
+        },
+        {
+            "name": "userName2",
+            "type": "string",
+            "label": "Username",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Username to be used to connect to the server",
+            "groupName": "destination",
+            "visibleRule": "remote2 = true"
+        },
+        {
+            "name": "password2",
+            "type": "string",
+            "label": "Password",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Password to be used to connect to the server",
+            "groupName": "destination",
+            "visibleRule": "remote2 = true"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "remoteCopy.ps1",
+            "platforms": [
+                "windows"
+            ],
+            "workingDirectory": "$(currentDirectory)"
+        }
+    }
+}

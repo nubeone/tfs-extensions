@@ -1,0 +1,65 @@
+{
+    "manifestVersion": 1,
+    "id": "TFS-Xml-Merge",
+    "name": "Remote XML Merge",
+    "version": "1.0.0",
+    "public": true,
+    "publisher": "NubeOne",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Task to merge two XML files (local or remote) and write the result in a third file (local or remote).",
+    "categories": [
+        "Build and release"
+    ],
+    "links": {
+        "learn": {
+            "uri": "https://github.com/nubeone/tfs-extensions#readme"
+        },
+        "support": {
+            "uri": "https://github.com/nubeone/tfs-extensions/issues"  
+        }
+    },
+    "icons": {
+        "default": "images/extension-icon.png"        
+    },
+    "branding": {
+        "color": "#1C3272",
+        "theme": "dark"
+    },
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "LICENSE.txt"
+        }
+    },
+    "tags": [
+        "release",
+        "build",
+        "xml",
+        "replace",
+        "merge",
+        "remote"
+    ],
+    "files": [
+        {
+            "path": "task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "TFS-Xml-merge-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "task"
+            }
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "remote-xml-merge",
+  "version": "1.0.0",
+  "description": "Task to merge two XML files (local or remote) and write the result in a third file (local or remote).",
+  "main": "index.js",
+  "scripts": {
+    "build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build.ps1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nubeone/tfs-extensions.git"
+  },
+  "keywords": [
+    "xml",
+    "merge",
+    "remote",
+    "vsts",
+    "tfs",
+    "config"
+  ],
+  "author": "NubeOne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nubeone/tfs-extensions/issues"
+  },
+  "homepage": "https://github.com/nubeone/tfs-extensions#readme",
+  "dependencies": {
+    "tfx-cli": "^0.5.12"
+  }
+}
