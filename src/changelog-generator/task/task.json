@@ -47,13 +47,13 @@
             "name": "commits",
             "type": "pickList",
             "label": "Commits",
-            "defaultValue": "Untill last tag",
+            "defaultValue": "Up to last tag",
             "required": true,
             "helpMarkDown": "",
             "groupName": "file",
             "options": {
                 "true": "All Changes",
-                "false": "Untill last tag"
+                "false": "Up to last tag"
             }
         }
     ],
