@@ -1,4 +1,4 @@
-# Replace tokens task for Visual Studio Team Services
+# XML merge task for Visual Studio Team Services
 This extension contains a remote XML merge task for VS Team Services to merge two XML files (local or remote) and write the result in a third file (local or remote).
 
 # How to use the build/release task
