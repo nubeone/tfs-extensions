@@ -8,11 +8,13 @@ This extension contains a Changelog Generator task for VS Team Services to gener
 4. Configure the step.
 
 # Configuration
+## Working Directory
+Home directory of the repository
 ## Filename
-How the Changelog file will be named.
+How the changelog file will be named.
+## Commits
+Whether a complete changelog or only back to the last tag should be created.
+
 
 # More information
 https://github.com/nubeone/tfs-extensions
-
-# Release notes
-**Release 1.0.0**
