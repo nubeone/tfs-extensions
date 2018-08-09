@@ -23,6 +23,3 @@ Password of the user.
 
 # More information
 https://github.com/nubeone/tfs-extensions
-
-# Release notes
-**Release 1.0.0**
