@@ -41,12 +41,14 @@ try {
     #Copy
     if(($remote1 -eq "true") -and ($remote2 -eq "true")) {
         $script = {
-            $session = $args[0]
-            $source = $args[1]
-            $destination = $args[2]
+            $server = $args[0]
+            $cred = $args[1]
+            $source = $args[2]
+            $destination = $args[3]
+            $session = New-PSSession -ComputerName $server -Credential $cred
             Copy-Item -ToSession $session -Path $source -Recurse -Destination $destination -force
         }
-        Invoke-Command -Session $session1 -ScriptBlock $script -ArgumentList $session2, $sourcePath, $destinationPath
+        Invoke-Command -Session $session1 -ScriptBlock $script -ArgumentList $server2, $cred2, $sourcePath, $destinationPath
     } elseif (($remote1 -eq "true") -and ($remote2 -eq "false")) {
         Copy-Item -FromSession $session1 -Path $sourcePath -Recurse -Destination $destinationPath -force
     } elseif (($remote1 -eq "false") -and ($remote2 -eq "true")) {
