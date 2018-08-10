@@ -15,7 +15,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Remote Copy",
+    "instanceNameFormat": "$(description)",
     "groups": [
         {
             "name": "source",
@@ -29,6 +29,14 @@
         }
     ],
     "inputs": [
+        {
+            "name": "description",
+            "type": "string",
+            "label": "Description",
+            "defaultValue": "Remote Copy",
+            "required": true,
+            "helpMarkDown": "Description of your task (will be shown under the task name)",
+        },
         {
             "name": "remote1",
             "type": "pickList",
