@@ -48,7 +48,17 @@ try {
             $session = New-PSSession -ComputerName $server -Credential $cred
             Copy-Item -ToSession $session -Path $source -Recurse -Destination $destination -force
         }
-        Invoke-Command -Session $session1 -ScriptBlock $script -ArgumentList $server2, $cred2, $sourcePath, $destinationPath
+        #need to use the local user, so \userName instead of just userName
+        Write-Host "Checking userName2 for local"
+        if (!$userName2.StartsWith("\")) {
+            Write-Host "adding Backslash to make userName local"
+            $localUserName = "\" + $userName2
+        } else {
+            Write-Host "userName was already local, continuing"
+            $localUserName = $userName2
+        }
+        $localUserCred = New-Object System.Management.Automation.PSCredential ($localUserName, $password2)
+        Invoke-Command -Session $session1 -ScriptBlock $script -ArgumentList $server2, $localUserCred, $sourcePath, $destinationPath
     } elseif (($remote1 -eq "true") -and ($remote2 -eq "false")) {
         Copy-Item -FromSession $session1 -Path $sourcePath -Recurse -Destination $destinationPath -force
     } elseif (($remote1 -eq "false") -and ($remote2 -eq "true")) {
