@@ -26,6 +26,11 @@
             "name": "destination",
             "displayName": "Destination Folder",
             "isExpanded": true
+        },
+        {
+            "name": "advanced",
+            "displayName": "Advanced Options",
+            "isExpanded": false
         }
     ],
     "inputs": [
@@ -140,6 +145,97 @@
             "helpMarkDown": "Password to be used to connect to the server",
             "groupName": "destination",
             "visibleRule": "remote2 = true"
+        },
+        {
+            "name": "recurseCopy",
+            "type": "bool",
+            "label": "Recurse",
+            "defaultValue": "true",
+            "required": false,
+            "helpMarkDown": "Copy files in target folder and all subfolders",
+            "groupName": "advanced"
+        },
+        {
+            "name": "container",
+            "type": "bool",
+            "label": "Retain folder structure",
+            "defaultValue": "true",
+            "required": false,
+            "helpMarkDown": "If this is set to false, all copied files will be located directly in the target folder",
+            "groupName": "advanced",
+            "visibleRule": "recurseCopy = true"
+        },
+        {
+            "name": "includeCopy",
+            "type": "string",
+            "label": "Include",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Copy only files fitting these comma-separated patterns",
+            "groupName": "advanced"
+        },
+        {
+            "name": "excludeCopy",
+            "type": "string",
+            "label": "Exclude",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Do not copy files fitting these comma-separated patterns",
+            "groupName": "advanced"
+        },
+        {
+            "name": "forceCopy",
+            "type": "bool",
+            "label": "Force Copying",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Copy files that cannot otherwise be changed, e.g. read-only files",
+            "groupName": "advanced"
+        },
+        {
+            "name": "clear",
+            "type": "bool",
+            "label": "Clear target folder",
+            "defaultValue": "false",
+            "required": false,
+            "helpMarkDown": "Delete the contents of the target folder before copying",
+            "groupName": "advanced"
+        },
+        {
+            "name": "recurseDelete",
+            "type": "bool",
+            "label": "Recurse clear",
+            "defaultValue": "true",
+            "required": false,
+            "helpMarkDown": "Delete files from subfolders too (only relevant if include/exclude patterns protect those folders)",
+            "groupName": "advanced"
+        },
+        {
+            "name": "includeDelete",
+            "type": "string",
+            "label": "Include",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Delete only files fitting these comma-separated patterns",
+            "groupName": "advanced"
+        },
+        {
+            "name": "excludeDelete",
+            "type": "string",
+            "label": "Exclude",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Do not delete files fitting these comma-separated patterns",
+            "groupName": "advanced"
+        },
+        {
+            "name": "forceDelete",
+            "type": "bool",
+            "label": "Force Delete",
+            "defaultValue": "false",
+            "required": false,
+            "helpMarkDown": "Delete files that cannot otherwise be changed, e.g. read-only or hidden files",
+            "groupName": "advanced"
         }
     ],
     "execution": {
