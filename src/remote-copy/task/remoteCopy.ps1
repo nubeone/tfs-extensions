@@ -2,22 +2,6 @@ Trace-VstsEnteringInvocation $MyInvocation
 try {
     $global:ErrorActionPreference = 'Stop'
 
-    # options, using splatting
-    $copyOptions = @{
-        recurse = Get-VstsInput -Name "recurseCopy" -AsBool -Default $true #copy recursively? (bool)
-        container = Get-VstsInput -Name "container" -AsBool -Default $true #retain folder structure? (bool)
-        include = Get-VstsInput -Name "includeCopy" -Default "" #include filters for copying (string, contains comma-separated patterns)
-        exclude = Get-VstsInput -Name "excludeCopy" -Default "" #exclude filters for copying (string, contains comma-separated patterns)
-        force = Get-VstsInput -Name "forceCopy" -AsBool -Default $true #copy read-only files etc. too (bool)
-    }
-    $clear = Get-VstsInput -Name "clear" -AsBool -Default $false #clear folder before copying (bool)
-    $clearOptions = @{
-        recurse = Get-VstsInput -Name "recurseDelete" -AsBool -Default $true #delete files in subfolders too (bool)
-        include = Get-VstsInput -Name "includeDelete" -Default "" #include filters for deleting (string, contains comma-separated patterns)
-        exclude = Get-VstsInput -Name "excludeDelete" -Default "" #exclude filters for deleting (string, contains comma-separated patterns)
-        force = Get-VstsInput -Name "forceDelete" -AsBool -Default $false #delete read-only, hidden etc. files too (bool)
-    }
-
     # source folder
     $remote1 = Get-VstsInput -Name "remote1" -Require -ErrorAction "Stop"
     Write-Host "remote1: $remote1"
@@ -53,15 +37,51 @@ try {
         Write-Host "done opening session to remote server for destination folder"
     }
 
+        # options, using splatting
+        $copyOptions = @{
+            Path = $sourcePath
+            Destination = $destinationPath
+            Recurse = Get-VstsInput -Name "recurseCopy" -AsBool -Default $true #copy recursively? (bool)
+            Container = Get-VstsInput -Name "container" -AsBool -Default $true #retain folder structure? (bool)
+            Include = Get-VstsInput -Name "includeCopy" -Default "" | foreach-object { $_.split(",").trim() } #include filters for copying (string, contains comma-separated patterns)
+            Exclude = Get-VstsInput -Name "excludeCopy" -Default "" | foreach-object { $_.split(",").trim() } #exclude filters for copying (string, contains comma-separated patterns)
+            Force = Get-VstsInput -Name "forceCopy" -AsBool -Default $true #copy read-only files etc. too (bool)
+        }
+        $clear = Get-VstsInput -Name "clear" -AsBool -Default $false #clear folder before copying (bool)
+        $clearOptions = @{
+            Path = $destinationPath
+            Recurse = Get-VstsInput -Name "recurseDelete" -AsBool -Default $true #delete files in subfolders too (bool)
+            Include = Get-VstsInput -Name "includeDelete" -Default "" | foreach-object { $_.split(",").trim() } #include filters for deleting (string, contains comma-separated patterns)
+            Exclude = Get-VstsInput -Name "excludeDelete" -Default "" | foreach-object { $_.split(",").trim() } #exclude filters for deleting (string, contains comma-separated patterns)
+            Force = Get-VstsInput -Name "forceDelete" -AsBool -Default $false #delete read-only, hidden etc. files too (bool)
+        }
+
+    #Clear
+    if ($clear -eq $true) {
+        $clearScript = {
+            $options = $args[0]
+            # Remove-Item with recurse has a known issue (according to microsoft documentation), so use Get-Childitem | Remove-Item
+            Get-ChildItem @options | Remove-Item @options
+        }
+        $invokeOptions = @{
+            ScriptBlock = $clearScript
+            ArgumentList = $clearOptions
+        }
+        if ($remote2 -eq "true") {
+            $invokeOptions.Session = $session2
+        } 
+        Invoke-Command @invokeOptions
+    }
+
     #Copy
-    if(($remote1 -eq "true") -and ($remote2 -eq "true")) {
+    if(($remote1 -eq "true") -and ($remote2 -eq "true")) { #needs special handling since copy-item can't deal with having both -FromSession and -ToSession
         $script = {
             $server = $args[0]
             $cred = $args[1]
-            $source = $args[2]
-            $destination = $args[3]
+            $options = $args[2]
             $session = New-PSSession -ComputerName $server -Credential $cred
-            Copy-Item -ToSession $session -Path $source -Recurse -Destination $destination -force
+            $options.ToSession = $session
+            Copy-Item @options
         }
         #need to use the local user, so \userName instead of just userName
         Write-Host "Checking userName2 for local"
@@ -74,13 +94,14 @@ try {
         }
         $localUserCred = New-Object System.Management.Automation.PSCredential ($localUserName, $password2)
         Invoke-Command -Session $session1 -ScriptBlock $script -ArgumentList $server2, $localUserCred, $sourcePath, $destinationPath
-    } elseif (($remote1 -eq "true") -and ($remote2 -eq "false")) {
-        Copy-Item -FromSession $session1 -Path $sourcePath -Recurse -Destination $destinationPath -force
-    } elseif (($remote1 -eq "false") -and ($remote2 -eq "true")) {
-        Copy-Item -ToSession $session2 -Path $sourcePath -Recurse -Destination $destinationPath -force
-    } elseif (($remote1 -eq "false") -and ($remote2 -eq "false")) {
-        Copy-Item -Path $sourcePath -Recurse -Destination $destinationPath -force 
-    }
+    } else {
+        if ($remote1 -eq "true") {
+            $copyOptions.FromSession = $session1
+        } elseif ($remote2 -eq "true") {
+            $copyOptions.ToSession = $session2
+        }
+        Copy-Item @copyOptions
+    } 
 
     Write-Host "closing sessions..."
     #close sessions
