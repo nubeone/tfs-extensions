@@ -1,8 +1,19 @@
 Trace-VstsEnteringInvocation $MyInvocation
 try {
     $global:ErrorActionPreference = 'Stop'
-    #$global: __vstsNoOverrideVerbose = $true
 
+    # options
+    $recurseCopy = Get-VstsInput -Name "recurseCopy" #copy recursively? (bool)
+    $container = Get-VstsInput -Name "container" #retain folder structure? (bool)
+    $includeCopy = Get-VstsInput -Name "includeCopy" #include filters for copying (string, contains comma-separated patterns)
+    $excludeCopy = Get-VstsInput -Name "excludeCopy" #exclude filters for copying (string, contains comma-separated patterns)
+    $forceCopy = Get-VstsInput -Name "forceCopy" #copy read-only files etc. too (bool)
+    $clear = Get-VstsInput -Name "clear" #clear folder before copying (bool)
+    $recurseDelete = Get-VstsInput -Name "recurseDelete" #delete files in subfolders too (bool)
+    $includeDelete = Get-VstsInput -Name "includeDelete" #include filters for deleting (string, contains comma-separated patterns)
+    $excludeDelete = Get-VstsInput -Name "excludeDelete" #exclude filters for deleting (string, contains comma-separated patterns)
+    $forceDelete = Get-VstsInput -Name "forceDelete" #delete read-only, hidden etc. files too (bool)
+    
     # source folder
     $remote1 = Get-VstsInput -Name "remote1" -Require -ErrorAction "Stop"
     Write-Host "remote1: $remote1"
