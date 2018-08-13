@@ -37,40 +37,48 @@ try {
         Write-Host "done opening session to remote server for destination folder"
     }
 
-        # options, using splatting
-        $copyOptions = @{
-            Path = $sourcePath
-            Destination = $destinationPath
-            Recurse = Get-VstsInput -Name "recurseCopy" -AsBool -Default $true #copy recursively? (bool)
-            Container = Get-VstsInput -Name "container" -AsBool -Default $true #retain folder structure? (bool)
-            Include = Get-VstsInput -Name "includeCopy" -Default "" | foreach-object { $_.split(",").trim() } #include filters for copying (string, contains comma-separated patterns)
-            Exclude = Get-VstsInput -Name "excludeCopy" -Default "" | foreach-object { $_.split(",").trim() } #exclude filters for copying (string, contains comma-separated patterns)
-            Force = Get-VstsInput -Name "forceCopy" -AsBool -Default $true #copy read-only files etc. too (bool)
-        }
-        $clear = Get-VstsInput -Name "clear" -AsBool -Default $false #clear folder before copying (bool)
-        $clearOptions = @{
-            Path = $destinationPath
-            Recurse = Get-VstsInput -Name "recurseDelete" -AsBool -Default $true #delete files in subfolders too (bool)
-            Include = Get-VstsInput -Name "includeDelete" -Default "" | foreach-object { $_.split(",").trim() } #include filters for deleting (string, contains comma-separated patterns)
-            Exclude = Get-VstsInput -Name "excludeDelete" -Default "" | foreach-object { $_.split(",").trim() } #exclude filters for deleting (string, contains comma-separated patterns)
-            Force = Get-VstsInput -Name "forceDelete" -AsBool -Default $false #delete read-only, hidden etc. files too (bool)
-        }
+    # options, using splatting
+    $copyOptions = @{
+        Path = $sourcePath
+        Destination = $destinationPath
+        Recurse = Get-VstsInput -Name "recurseCopy" -AsBool -Default $true #copy recursively? (bool)
+        Container = Get-VstsInput -Name "container" -AsBool -Default $true #retain folder structure? (bool)
+        Include = Get-VstsInput -Name "includeCopy" -Default "" | foreach-object { $_.split(",").trim() } #include filters for copying (string, contains comma-separated patterns)
+        Exclude = Get-VstsInput -Name "excludeCopy" -Default "" | foreach-object { $_.split(",").trim() } #exclude filters for copying (string, contains comma-separated patterns)
+        Force = Get-VstsInput -Name "forceCopy" -AsBool -Default $true #copy read-only files etc. too (bool)
+    }
+    $clear = Get-VstsInput -Name "clear" -AsBool -Default $false #clear folder before copying (bool)
+    $clearOptions = @{
+        Path = $destinationPath
+        Recurse = Get-VstsInput -Name "recurseDelete" -AsBool -Default $true #delete files in subfolders too (bool)
+        Include = Get-VstsInput -Name "includeDelete" -Default "" | foreach-object { $_.split(",").trim() } #include filters for deleting (string, contains comma-separated patterns)
+        Exclude = Get-VstsInput -Name "excludeDelete" -Default "" | foreach-object { $_.split(",").trim() } #exclude filters for deleting (string, contains comma-separated patterns)
+        Force = Get-VstsInput -Name "forceDelete" -AsBool -Default $false #delete read-only, hidden etc. files too (bool)
+    }
 
     #Clear
     if ($clear -eq $true) {
-        $clearScript = {
-            $options = $args[0]
-            # Remove-Item with recurse has a known issue (according to microsoft documentation), so use Get-Childitem | Remove-Item
-            Get-ChildItem @options | Remove-Item @options
+        # Remove-Item with recurse has a known issue (according to microsoft documentation), so use "Get-Childitem | Remove-Item" in that case.
+        if ($options.Recurse -eq $true) {
+            $clearScript = {
+                $options = $args[0]
+                $removeOptions = @{
+                    Force = $true
+                    Recurse = $true
+                }
+                Get-ChildItem @options | Remove-Item @removeOptions
+            }
+            $invokeOptions = @{
+                ScriptBlock = $clearScript
+                ArgumentList = $clearOptions
+            }
+            if ($remote2 -eq "true") {
+                $invokeOptions.Session = $session2
+            } 
+            Invoke-Command @invokeOptions
+        } else {
+            Remove-Item @options
         }
-        $invokeOptions = @{
-            ScriptBlock = $clearScript
-            ArgumentList = $clearOptions
-        }
-        if ($remote2 -eq "true") {
-            $invokeOptions.Session = $session2
-        } 
-        Invoke-Command @invokeOptions
     }
 
     #Copy
