@@ -40,7 +40,7 @@
             "label": "Description",
             "defaultValue": "Remote Copy",
             "required": true,
-            "helpMarkDown": "Description of your task (will be shown under the task name)",
+            "helpMarkDown": "Description of your task (will be shown under the task name)"
         },
         {
             "name": "remote1",
@@ -208,7 +208,8 @@
             "defaultValue": "true",
             "required": false,
             "helpMarkDown": "Delete files from subfolders too (only relevant if include/exclude patterns protect those folders)",
-            "groupName": "advanced"
+            "groupName": "advanced",
+            "visibleRule": "clear = true"
         },
         {
             "name": "includeDelete",
@@ -217,7 +218,8 @@
             "defaultValue": "",
             "required": false,
             "helpMarkDown": "Delete only files fitting these comma-separated patterns",
-            "groupName": "advanced"
+            "groupName": "advanced",
+            "visibleRule": "clear = true"
         },
         {
             "name": "excludeDelete",
@@ -226,7 +228,8 @@
             "defaultValue": "",
             "required": false,
             "helpMarkDown": "Do not delete files fitting these comma-separated patterns",
-            "groupName": "advanced"
+            "groupName": "advanced",
+            "visibleRule": "clear = true"
         },
         {
             "name": "forceDelete",
@@ -235,7 +238,8 @@
             "defaultValue": "false",
             "required": false,
             "helpMarkDown": "Delete files that cannot otherwise be changed, e.g. read-only or hidden files",
-            "groupName": "advanced"
+            "groupName": "advanced",
+            "visibleRule": "clear = true"
         }
     ],
     "execution": {
