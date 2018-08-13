@@ -1,6 +1,6 @@
 {
     "id": "6a479afa-e814-4c80-85d7-c7e94ca0863c",
-    "name": "RemotCopy",
+    "name": "NubeOneRemoteCopy",
     "friendlyName": "Remote Copy",
     "description": "Copies a folder from local/remote to local/remote",
     "helpMarkDown": "[More Information](https://github.com/nubeone/tfs-extensions#readme)",

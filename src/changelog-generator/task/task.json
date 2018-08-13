@@ -1,6 +1,6 @@
 {
     "id": "29242a04-0b5d-4f5c-9a2a-abbaaba4c690",
-    "name": "ChangelogGenerator",
+    "name": "NubeOneChangelogGenerator",
     "friendlyName": "Changelog Generator",
     "description": "Creates a Changelog from commits and writes it to a file.",
     "helpMarkDown": "[More Information](https://github.com/nubeone/tfs-extensions#readme)",

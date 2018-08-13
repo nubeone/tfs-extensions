@@ -1,6 +1,6 @@
 {
     "id": "F1B0212C-6443-435B-8A15-3BA2900E85D4",
-    "name": "XmlMerge",
+    "name": "NubeOneXmlMerge",
     "friendlyName": "Remote XML Merge",
     "description": "Merge a new XML File into a remote one, overwriting conflicting values with those from the new file",
     "helpMarkDown": "[More Information](https://github.com/nubeone/tfs-extensions#readme)",
