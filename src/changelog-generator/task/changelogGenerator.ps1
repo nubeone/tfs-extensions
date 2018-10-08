@@ -15,6 +15,10 @@ try {
     } else {
         $tag = git describe --tags --abbrev=0
         $tag = $tag + "..@"
+        if([string]::IsNullOrEmpty((git log --oneline $tag --date=format:"%Y-%m-%d %H:%M" --pretty=format:"- %cd %h %s %d <%ce>" --no-merges))) {
+            $tag = git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1)
+            $tag = $tag + "..@"
+        }
         git log --oneline $tag --date=format:"%Y-%m-%d %H:%M" --pretty=format:"- %cd %h %s %d <%ce>" --no-merges >> $filename
     }
 } catch {

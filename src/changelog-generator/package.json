@@ -1,6 +1,6 @@
 {
   "name": "changelog-generator",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Generates a changelog from git commits and wirtes it to a file.",
   "main": "index.js",
   "scripts": {
