@@ -1,6 +1,6 @@
 {
   "name": "remote-xml-merge",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Task to merge two XML files (local or remote) and write the result in a third file (local or remote).",
   "main": "index.js",
   "scripts": {

@@ -62,7 +62,7 @@ function mergeNodes {
         }
         # set value to value of xml2 if no further childnodes 
         if ($xml2.SelectNodes("*").Count -eq 0) {
-            $xml1."#text" = $xml2."#text"
+            $xml1.InnerText = $xml2.InnerText
         }
         # add list items back in
         foreach($listItemNode in $listItems) {
